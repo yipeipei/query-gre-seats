@@ -1,3 +1,6 @@
+# Specific files for debug
+*.debug
+
 *.py[cod]
 
 # C extensions
