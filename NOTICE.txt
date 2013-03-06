@@ -1,0 +1,5 @@
+Query GRE Seats
+Copyright 2013 yipeipei@gmail.com
+
+This code developed by Yi Peipei
+at UESTC.
