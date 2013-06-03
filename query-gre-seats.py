@@ -22,12 +22,14 @@ import winsound
 import types
 
 __version__ = '1.1'
-__config__ = 'config.ini'
 __ring__ = 'ring.wav'
 
-__DEBUG__ = True    # TODO: change to False before release
-if __DEBUG__ == True:
-    __config__ = 'config.ini.debug'
+__config__ = 'config.ini'
+DEBUG = 'config.ini.debug'
+
+# if DEBUG exists, run with debug profile
+if os.path.exists(DEBUG):
+    __config__ = DEBUG
 
 WIDTH = 80
 HEIGHT = 40
