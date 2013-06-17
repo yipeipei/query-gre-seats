@@ -7,7 +7,7 @@ First released at <http://www.1point3acres.com/bbs/thread-38386-1-1.html> on 201
 
 Download
 ===============
-[V1.1] <https://github.com/yipeipei/query-gre-seats/archive/v1.1.zip> *latest*
+[V1.1] <https://github.com/yipeipei/query-gre-seats/archive/master.zip> *latest*
 
 Roadmap
 ===============
