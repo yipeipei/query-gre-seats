@@ -19,7 +19,7 @@ from urllib.request import HTTPCookieProcessor, HTTPHandler, build_opener
 from http.cookiejar import CookieJar
 from urllib.parse import quote, urlencode
 
-__version__ = '1.1'
+__version__ = '1.2'
 __ring__ = 'ring.wav'
 
 __config__ = 'config.ini'
@@ -52,7 +52,7 @@ class Common(object):
     def __init__(self):
         """load config from __config__"""
         self.CONFIG = ConfigParser()
-        self.CONFIG.read(os.path.join(os.getcwd(), __config__))
+        self.CONFIG.read(os.path.join(os.getcwd(), __config__), encoding='utf-8')
 
         self.USERINFO_NEEAID = self.CONFIG.getint('user', 'neea_id')
         self.USERINFO_PWD = self.CONFIG.get('user', 'password')
@@ -84,7 +84,7 @@ class Common(object):
         global QUERY_LIST
         PARA['neeaID'] = self.USERINFO_NEEAID
         PARA['cities'] = ';'.join(self.QUERY_CITYEN) + ';'
-        PARA['citiesNames'] = ';'.join(self.QUERY_CITYCN) + ';'
+        PARA['citiesNames'] = ';'.join(map(quote, self.QUERY_CITYCN)) + ';'
         for mon in self.QUERY_MONTH:
             ym = str(self.QUERY_YEAR) + '-' + str(mon)
             PARA['ym'] = ym
@@ -101,7 +101,7 @@ def watch(site):
     for it in common.QUERY_WATCH:
         it = it.split('@')
 
-        if site['bjtime'].find(it[0], 'utf-8') != -1 and site['siteName'].find(it[1], 'utf-8') != -1:
+        if site['bjtime'].find(it[0]) != -1 and site['siteName'].find(it[1]) != -1:
             print('^O^' * 3, site['bjtime'], end='')
             WATCH_FLAG = True
 
@@ -112,15 +112,15 @@ def print_sites(data):
         #     print value,'\t',
         # print '\n'
         if site['isClosed'] == 1:
-            print('closed ', end='')
+            print('closed', end=' ')
         else:
             if site['realSeats'] == 1:
-                print('-> ^O^ ', end='')
+                print('-> ^O^', end=' ')
                 watch(site)
             else:
-                print('  full ', end='')
+                print('  full', end=' ')
 
-        print(site['siteCode'], end='')
+        print(site['siteCode'], end=' ')
         print(site['siteName'])
 
 
